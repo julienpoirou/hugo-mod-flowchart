@@ -1,7 +1,7 @@
 {{- if not (.Page.Scratch.Get "hugoModFlowchartLoaded") -}}
-  <script src="{{ "vendor/hugo-mod-flowchart/flowchart.min.js" | relURL }}"></script>
+  <script defer src="{{ "vendor/hugo-mod-flowchart/flowchart.min.js" | relURL }}"></script>
   <link rel="stylesheet" href="{{ "vendor/hugo-mod-flowchart/hugo-mod-flowchart.css" | relURL }}">
-  <script src="{{ "vendor/hugo-mod-flowchart/hugo-mod-flowchart.js" | relURL }}"></script>
+  <script defer src="{{ "vendor/hugo-mod-flowchart/hugo-mod-flowchart.js" | relURL }}"></script>
   {{- .Page.Scratch.Set "hugoModFlowchartLoaded" true -}}
 {{- end -}}
 {{- $source := or .Inner "" -}}
