@@ -70,14 +70,49 @@ jobs:
           st->op->e
           EOF
 
-          cat > "${SITE_DIR}/content/test.md" <<'EOF'
+          B64_SOURCE=$(printf 'st=>start: B64 start\ne=>end: End\n\nst->e' | base64 -w0)
+
+          cat > "${SITE_DIR}/content/test.md" <<EOF
           ---
           title: "Flowchart test"
           ---
 
           {{< flowchart src="renderers/flowchart.txt" />}}
+
+          {{< flowchart >}}
+          st=>start: Démarrage — étape n°1
+          e=>end: Fin
+          st->e
+          {{< /flowchart >}}
+
+          {{< flowchart b64="${B64_SOURCE}" />}}
           EOF
 
           hugo --source "${SITE_DIR}" --destination "${OUT_DIR}"
-          grep -q 'vendor/hugo-mod-flowchart/hugo-mod-flowchart.js' "${OUT_DIR}/test/index.html"
-          grep -q 'data-hugo-mod-flowchart' "${OUT_DIR}/test/index.html"
+          PAGE="${OUT_DIR}/test/index.html"
+
+          # Assets injected, and only once for the whole page.
+          grep -q 'vendor/hugo-mod-flowchart/hugo-mod-flowchart.js' "${PAGE}"
+          test "$(grep -c 'hugo-mod-flowchart.js' "${PAGE}")" -eq 1
+
+          # All three input modes produce a wrapper.
+          test "$(grep -c 'data-hugo-mod-flowchart' "${PAGE}")" -eq 3
+
+          # Inline UTF-8 source survives the base64 round-trip untouched.
+          grep -o 'data-source="[^"]*"' "${PAGE}" | sed -n '2p' \
+            | sed 's/data-source="//;s/"$//' | base64 -d \
+            | grep -q "Démarrage — étape n°1"
+
+          # An empty source must fail the build explicitly.
+          cat > "${SITE_DIR}/content/invalid.md" <<'EOF'
+          ---
+          title: "invalid"
+          ---
+
+          {{< flowchart >}}
+          {{< /flowchart >}}
+          EOF
+          if hugo --source "${SITE_DIR}" --destination "${RUNNER_TEMP}/public-invalid"; then
+            echo "expected the build to fail on an empty shortcode source" >&2
+            exit 1
+          fi
