@@ -12,6 +12,16 @@
 
 Standalone Hugo module for `flowchart.js` rendering with a vendored browser runtime and simple shortcode integration.
 
+## Project status
+
+This module is in **minimal-maintenance mode**. The vendored rendering stack
+(`flowchart.js` 1.18.0 on top of Raphaël 2.3.0) sees little to no upstream
+activity, so no new upstream features or fixes are expected. Existing usage
+keeps working and security-relevant issues in the module itself will be
+addressed. For new projects, consider Mermaid flowcharts via
+[hugo-mod-mermaid](https://github.com/julienpoirou/hugo-mod-mermaid), which
+covers the same diagram type with an actively maintained renderer.
+
 ## Features
 
 - Render diagrams with `{{< flowchart >}}`
@@ -53,6 +63,13 @@ File source:
 
 ```text
 {{< flowchart src="renderers/flowchart.txt" />}}
+```
+
+Base64 source (when the diagram text would otherwise conflict with Markdown
+or shortcode parsing):
+
+```text
+{{< flowchart b64="c3Q9PnN0YXJ0OiBTdGFydAplPT5lbmQ6IEVuZAoKc3QtPmU=" />}}
 ```
 
 ## Output assets
