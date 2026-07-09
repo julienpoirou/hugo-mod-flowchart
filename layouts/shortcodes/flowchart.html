@@ -4,8 +4,8 @@
   <script src="{{ "vendor/hugo-mod-flowchart/hugo-mod-flowchart.js" | relURL }}"></script>
   {{- .Page.Scratch.Set "hugoModFlowchartLoaded" true -}}
 {{- end -}}
-{{- $source := .Inner -}}
-{{- $src := .Get "src" -}}
+{{- $source := or .Inner "" -}}
+{{- $src := or (.Get "src") "" -}}
 {{- $encodedSource := "" -}}
 {{- with .Get "b64" -}}
   {{- $encodedSource = . -}}
