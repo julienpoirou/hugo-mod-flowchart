@@ -2,10 +2,14 @@
   {{/* flowchart.js reads the global Raphael object at parse time, so its
        script tag must follow raphael's. Deferred scripts run in document
        order, so this ordering is preserved regardless of load timing. */}}
-  <script defer src="{{ "vendor/hugo-mod-flowchart/raphael.min.js" | relURL }}"></script>
-  <script defer src="{{ "vendor/hugo-mod-flowchart/flowchart.min.js" | relURL }}"></script>
-  <link rel="stylesheet" href="{{ "vendor/hugo-mod-flowchart/hugo-mod-flowchart.css" | relURL }}">
-  <script defer src="{{ "vendor/hugo-mod-flowchart/hugo-mod-flowchart.js" | relURL }}"></script>
+  {{- $raphael := resources.Get "vendor/hugo-mod-flowchart/raphael.min.js" | fingerprint "sha256" -}}
+  {{- $flowchart := resources.Get "vendor/hugo-mod-flowchart/flowchart.min.js" | fingerprint "sha256" -}}
+  {{- $style := resources.Get "vendor/hugo-mod-flowchart/hugo-mod-flowchart.css" | fingerprint "sha256" -}}
+  {{- $glue := resources.Get "vendor/hugo-mod-flowchart/hugo-mod-flowchart.js" | fingerprint "sha256" -}}
+  <script defer src="{{ $raphael.RelPermalink }}" integrity="{{ $raphael.Data.Integrity }}"></script>
+  <script defer src="{{ $flowchart.RelPermalink }}" integrity="{{ $flowchart.Data.Integrity }}"></script>
+  <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
+  <script defer src="{{ $glue.RelPermalink }}" integrity="{{ $glue.Data.Integrity }}"></script>
   {{- .Page.Scratch.Set "hugoModFlowchartLoaded" true -}}
 {{- end -}}
 {{- $source := or .Inner "" -}}

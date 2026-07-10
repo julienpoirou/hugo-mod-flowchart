@@ -74,12 +74,18 @@ or shortcode parsing):
 
 ## Output assets
 
-The module publishes:
+The module publishes, through Hugo Pipes (`resources.Get` + `fingerprint`),
+so each file's published URL includes a content hash for cache-busting and
+ships a Subresource Integrity attribute:
 
-- `vendor/hugo-mod-flowchart/raphael.min.js`
-- `vendor/hugo-mod-flowchart/flowchart.min.js`
-- `vendor/hugo-mod-flowchart/hugo-mod-flowchart.js`
-- `vendor/hugo-mod-flowchart/hugo-mod-flowchart.css`
+- `vendor/hugo-mod-flowchart/raphael.<hash>.min.js`
+- `vendor/hugo-mod-flowchart/flowchart.<hash>.min.js`
+- `vendor/hugo-mod-flowchart/hugo-mod-flowchart.<hash>.js`
+- `vendor/hugo-mod-flowchart/hugo-mod-flowchart.<hash>.css`
+
+Source files live under `assets/vendor/hugo-mod-flowchart/` in this
+repository; see [`VENDORED.md`](VENDORED.md) for their unfingerprinted
+checksums.
 
 ## Development
 

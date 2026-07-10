@@ -58,8 +58,8 @@ jobs:
               source = "_modules/hugo-mod-flowchart/layouts"
               target = "layouts"
             [[module.mounts]]
-              source = "_modules/hugo-mod-flowchart/static"
-              target = "static"
+              source = "_modules/hugo-mod-flowchart/assets"
+              target = "assets"
           EOF
 
           cat > "${SITE_DIR}/assets/renderers/flowchart.txt" <<'EOF'
@@ -91,9 +91,18 @@ jobs:
           hugo --source "${SITE_DIR}" --destination "${OUT_DIR}"
           PAGE="${OUT_DIR}/test/index.html"
 
-          # Assets injected, and only once for the whole page.
-          grep -q 'vendor/hugo-mod-flowchart/hugo-mod-flowchart.js' "${PAGE}"
-          test "$(grep -c 'hugo-mod-flowchart.js' "${PAGE}")" -eq 1
+          # Assets are fingerprinted (cache-busting) and injected only once
+          # for the whole page.
+          grep -oE 'vendor/hugo-mod-flowchart/hugo-mod-flowchart\.[0-9a-f]+\.js' "${PAGE}"
+          test "$(grep -oE 'vendor/hugo-mod-flowchart/hugo-mod-flowchart\.[0-9a-f]+\.js' "${PAGE}" | wc -l)" -eq 1
+
+          # Every injected asset ships a matching Subresource Integrity hash
+          # (raphael, flowchart, css, glue = 4 assets).
+          test "$(grep -c 'integrity="sha256-' "${PAGE}")" -eq 4
+
+          # The fingerprinted files are actually published at that path.
+          JS_PATH=$(grep -oE 'vendor/hugo-mod-flowchart/hugo-mod-flowchart\.[0-9a-f]+\.js' "${PAGE}" | head -1)
+          test -f "${OUT_DIR}/${JS_PATH}"
 
           # All three input modes produce a wrapper.
           test "$(grep -c 'data-hugo-mod-flowchart' "${PAGE}")" -eq 3
