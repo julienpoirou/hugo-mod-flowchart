@@ -1,4 +1,8 @@
 {{- if not (.Page.Scratch.Get "hugoModFlowchartLoaded") -}}
+  {{/* flowchart.js reads the global Raphael object at parse time, so its
+       script tag must follow raphael's. Deferred scripts run in document
+       order, so this ordering is preserved regardless of load timing. */}}
+  <script defer src="{{ "vendor/hugo-mod-flowchart/raphael.min.js" | relURL }}"></script>
   <script defer src="{{ "vendor/hugo-mod-flowchart/flowchart.min.js" | relURL }}"></script>
   <link rel="stylesheet" href="{{ "vendor/hugo-mod-flowchart/hugo-mod-flowchart.css" | relURL }}">
   <script defer src="{{ "vendor/hugo-mod-flowchart/hugo-mod-flowchart.js" | relURL }}"></script>

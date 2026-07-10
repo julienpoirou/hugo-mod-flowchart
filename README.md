@@ -76,6 +76,7 @@ or shortcode parsing):
 
 The module publishes:
 
+- `vendor/hugo-mod-flowchart/raphael.min.js`
 - `vendor/hugo-mod-flowchart/flowchart.min.js`
 - `vendor/hugo-mod-flowchart/hugo-mod-flowchart.js`
 - `vendor/hugo-mod-flowchart/hugo-mod-flowchart.css`
