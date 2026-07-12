@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.2.1](https://github.com/julienpoirou/hugo-mod-flowchart/compare/v0.2.0...v0.2.1) (2026-07-10)
+
+
+### Corrections 🐛
+
+* **release:** Use plain GITHUB_TOKEN for release-please ([f665ebe](https://github.com/julienpoirou/hugo-mod-flowchart/commit/f665ebe53ba0498bebdf169f3904b77322c93e18))
+* **shortcode:** Support inline and b64 input when src param is absent ([26f7281](https://github.com/julienpoirou/hugo-mod-flowchart/commit/26f7281457aa9eeeccdba9e61cfea58b593e7549))
+
+
+### Performance ⚡
+
+* **assets:** Fingerprint vendored assets via hugo pipes ([9bc17f5](https://github.com/julienpoirou/hugo-mod-flowchart/commit/9bc17f58debd0fe7b70974d23bd52113b1ba46cc))
+* **assets:** Load vendored scripts with defer ([47faa07](https://github.com/julienpoirou/hugo-mod-flowchart/commit/47faa078baf46208aac25f314550a2796fdc48bf))
+
 ## [0.2.0](https://github.com/julienpoirou/hugo-mod-flowchart/compare/v0.1.0...v0.2.0) (2026-03-29)
 
 
