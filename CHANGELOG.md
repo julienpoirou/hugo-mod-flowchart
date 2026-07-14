@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.3](https://github.com/julienpoirou/hugo-mod-flowchart/compare/v0.2.2...v0.2.3) (2026-07-14)
+
+
+### Corrections 🐛
+
+* **tests:** Contain served paths within rootDir in serve.js ([f1f50f0](https://github.com/julienpoirou/hugo-mod-flowchart/commit/f1f50f0c151a3fd930e0be6dac772f1dac9165b7))
+
 ## [0.2.2](https://github.com/julienpoirou/hugo-mod-flowchart/compare/v0.2.1...v0.2.2) (2026-07-14)
 
 
