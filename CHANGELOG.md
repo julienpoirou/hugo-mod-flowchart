@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.4](https://github.com/julienpoirou/hugo-mod-flowchart/compare/v0.2.3...v0.2.4) (2026-08-09)
+
+
+### Corrections 🐛
+
+* **security:** Uncontrolled data used in path expression ([bb60080](https://github.com/julienpoirou/hugo-mod-flowchart/commit/bb6008066c710dc9d8615268e5d657efd34665e4))
+
 ## [0.2.3](https://github.com/julienpoirou/hugo-mod-flowchart/compare/v0.2.2...v0.2.3) (2026-07-14)
 
 
