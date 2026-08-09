@@ -80,7 +80,7 @@ jobs:
           {{< flowchart src="renderers/flowchart.txt" />}}
 
           {{< flowchart >}}
-          st=>start: Démarrage — étape n°1
+          st=>start: Démarrage - étape n°1
           e=>end: Fin
           st->e
           {{< /flowchart >}}
@@ -112,7 +112,7 @@ jobs:
           # so the assertion must do the same before decoding.
           grep -o 'data-source="[^"]*"' "${PAGE}" | sed -n '2p' \
             | sed 's/data-source="//;s/"$//;s/&#43;/+/g' | base64 -d \
-            | grep -q "Démarrage — étape n°1"
+            | grep -q "Démarrage - étape n°1"
 
           # An empty source must fail the build explicitly.
           cat > "${SITE_DIR}/content/invalid.md" <<'EOF'
