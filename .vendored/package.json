@@ -1,0 +1,25 @@
+{
+  "name": "hugo-mod-flowchart-vendored",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Declares the third-party libraries this module vendors under assets/libs/. Never installed at build time or at runtime: it exists so Dependabot tracks their versions and GitHub raises security alerts on the code we actually ship. See ../VENDORED.md.",
+  "dependencies": {
+    "flowchart.js": "1.18.0",
+    "raphael": "2.3.0"
+  },
+  "vendored": {
+    "raphael.min.js": {
+      "path": "assets/libs/hugo-mod-flowchart/raphael.min.js",
+      "package": "raphael",
+      "source": "https://cdn.jsdelivr.net/npm/raphael@{version}/raphael.min.js",
+      "sha256": "4da6e9aca75e3576d27ac0962ccadc6d6483cd486901d70d3dee50e77ae7f588"
+    },
+    "flowchart.min.js": {
+      "path": "assets/libs/hugo-mod-flowchart/flowchart.min.js",
+      "package": "flowchart.js",
+      "source": "https://raw.githubusercontent.com/adrai/flowchart.js/v{version}/release/flowchart.min.js",
+      "note": "The npm tarball ships sources only, so the bundle comes from the git tag. The trailing sourceMappingURL comment is dropped because the .map file is not vendored. Upstream forgot to bump the banner, which still reads v1.17.1.",
+      "sha256": "425438e3d35b2b5c591222fa00f0000386daa8aba35c111bd7dd73527dc6db7a"
+    }
+  }
+}
