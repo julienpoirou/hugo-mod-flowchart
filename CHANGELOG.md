@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.5](https://github.com/julienpoirou/hugo-mod-flowchart/compare/v0.2.4...v0.2.5) (2026-11-01)
+
+
+### Corrections 🐛
+
+* **security:** Address scorecard repository findings ([c278cf7](https://github.com/julienpoirou/hugo-mod-flowchart/commit/c278cf76065edc662e49c8c2efc83510bc0f9a3d))
+
 ## [0.2.4](https://github.com/julienpoirou/hugo-mod-flowchart/compare/v0.2.3...v0.2.4) (2026-08-09)
 
 
