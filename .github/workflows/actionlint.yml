@@ -27,4 +27,5 @@ jobs:
       - name: Run actionlint
         env:
           SHELLCHECK_OPTS: "-e SC2059 -e SC2129 -e SC2012 -e SC2035"
-        run: $(go env GOPATH)/bin/actionlint -color
+        run: |
+          "$(go env GOPATH)/bin/actionlint" -color
