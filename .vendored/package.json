@@ -19,7 +19,7 @@
       "package": "flowchart.js",
       "source": "https://raw.githubusercontent.com/adrai/flowchart.js/v{version}/release/flowchart.min.js",
       "note": "The npm tarball ships sources only, so the bundle comes from the git tag. The trailing sourceMappingURL comment is dropped because the .map file is not vendored. Upstream forgot to bump the banner, which still reads v1.17.1.",
-      "sha256": "425438e3d35b2b5c591222fa00f0000386daa8aba35c111bd7dd73527dc6db7a"
+      "sha256": "1d4f066dbaeb66853a00aa08febebb786149192f8cf9d5babe2151a6c2192e8a"
     }
   }
 }
