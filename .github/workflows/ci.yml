@@ -138,6 +138,9 @@ jobs:
       - name: Install test dependencies
         run: npm ci
 
+      - name: Verify UTF-8 decoding with property-based fuzzing
+        run: npm run test:fuzz
+
       - name: Install Playwright browser
         run: npx playwright install --with-deps chromium
 

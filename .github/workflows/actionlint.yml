@@ -21,14 +21,10 @@ jobs:
       - name: Install shellcheck
         run: sudo apt-get install -y shellcheck
 
-      - name: Download actionlint
-        run: |
-          set -euo pipefail
-          mkdir -p bin
-          curl -sSL https://raw.githubusercontent.com/rhysd/actionlint/v1.7.12/scripts/download-actionlint.bash \
-            | bash -s -- 1.7.12 bin
+      - name: Install actionlint
+        run: go install github.com/rhysd/actionlint/cmd/actionlint@v1.7.12
 
       - name: Run actionlint
         env:
           SHELLCHECK_OPTS: "-e SC2059 -e SC2129 -e SC2012 -e SC2035"
-        run: bin/actionlint -color
+        run: $(go env GOPATH)/bin/actionlint -color
